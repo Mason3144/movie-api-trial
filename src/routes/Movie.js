@@ -6,7 +6,8 @@ const GET_MOVIE = gql`
     movie(id: $movieId) {
       id
       title
-      small_cover_image
+      medium_cover_image
+      genres
     }
   }
 `;
@@ -21,5 +22,13 @@ export default function Movie() {
   if (loading) {
     return <h1>Fetching movie...</h1>;
   }
-  return <div>{data.movie.title}, </div>;
+  return (
+    <div>
+      <h1>{data.movie.title}</h1>
+      <div>
+        <img src={data.movie.medium_cover_image}></img>
+      </div>
+      <span>Genres: {data.movie.genres}</span>
+    </div>
+  );
 }

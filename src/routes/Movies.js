@@ -6,6 +6,7 @@ const ALL_MOVIES = gql`
     allMovies {
       title
       id
+      small_cover_image
     }
   }
 `;
@@ -22,7 +23,10 @@ export default function Movies() {
     <ul>
       {data.allMovies.map((movie) => (
         <li key={movie.id}>
-          <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
+          <Link to={`/movies/${movie.id}`}>
+            <img src={movie.small_cover_image}></img>
+            {movie.title}
+          </Link>
         </li>
       ))}
     </ul>
